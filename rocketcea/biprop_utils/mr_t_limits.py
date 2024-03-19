@@ -119,7 +119,7 @@ class MR_Temperature_Limits( object ):
         return '''<%s/%s, Stoich_MR=%g, Min MR=%g, Max MR=%g, Tc Left=%g R, Tc Right=%g R>'''%\
             (self.cea_oxName, self.cea_fuelName, self.Stoich_MR, self.min_MR, self.max_MR, self.Tc_at_min_MR, self.Tc_at_max_MR)
 
-if __name__=="__main__":
+def dev_tests():
     
     mc = MR_Temperature_Limits()
     
@@ -128,4 +128,8 @@ if __name__=="__main__":
     print( 'Min MR = %g'%mc.min_MR, '  Tc at Min MR =',mc.Tc_at_min_MR )
     print( 'Max MR = %g'%mc.max_MR, '  Tc at Max MR =',mc.Tc_at_max_MR )
     
+
+if __name__ == "__main__":
+    dev_tests()
+
     

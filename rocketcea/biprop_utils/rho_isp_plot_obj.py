@@ -1,3 +1,4 @@
+
 import pylab as plt
 import numpy as np
 from rocketcea.biprop_utils.InterpProp_scipy import InterpProp
@@ -515,7 +516,7 @@ class RhoIspPlot( object ):
         self.add_propellants()
         plt.savefig(fname, dpi=dpi)
 
-if __name__=="__main__":
+def dev_tests():
     from veh_stage_obj import ConstMassFracStage
     
     #rp = RhoIspPlot()
@@ -530,3 +531,7 @@ if __name__=="__main__":
                                  plot_paramL=['GLOW'], num_ticks=16)
     
     rp.show()
+
+if __name__ == "__main__":
+    dev_tests()
+

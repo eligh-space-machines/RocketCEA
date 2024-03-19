@@ -17,7 +17,6 @@ This will execute the setup.py file and insure that its pip-specific commands ar
 
 # Use numpy to build the f2py fortran extension
 # --------------------------------    
-import setuptools
 from numpy.distutils.core import Extension, setup
 
 
@@ -27,6 +26,7 @@ from setuptools import  find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
+import os
 
 here = path.abspath(path.dirname(__file__))
 
@@ -45,19 +45,21 @@ with open(path.join(here, 'requirements.txt'), encoding='utf-8') as f2:
 target_file = path.join( here, 'rocketcea','_version.py')
 exec( open( target_file ).read() )  # creates local __version__ variable
 
+if os.environ.get('READTHEDOCS',True):
+    ext_py_cea = Extension(name = 'rocketcea.py_cea',
+                           sources = ['rocketcea/py_cea.f'])
+else:
+    ext_py_cea = Extension(name = 'rocketcea.py_cea',
+                        sources = ['rocketcea/py_cea.f'],
+                        extra_link_args=["-static"])
 
-#ext_py_cea = Extension(name = 'rocketcea.py_cea',
-#                      sources = ['rocketcea/py_cea.f'],
-#                      extra_link_args=["-static"])
-
-ext_py_cea = Extension(name = 'rocketcea.py_cea',
-                       sources = ['rocketcea/py_cea.f'])
 
 
 setup(
     name='rocketcea',
     version = __version__,  # METADATA_RESET:    version = '<<version>>',
     ext_modules = [ext_py_cea],
+    #   config_fc={'--fcompiler': 'mingw32'},  # Specify the Fortran compiler type
 
     description = 'RocketCEA wraps the FORTRAN CEA code and provides some useful tools.',
     long_description = long_description,
@@ -89,15 +91,12 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
 
     platforms = 'any',

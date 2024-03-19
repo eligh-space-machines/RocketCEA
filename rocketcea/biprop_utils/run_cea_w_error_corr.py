@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 '''If CEA gives back Isp==0, then try to estimate it.'''
 """
@@ -113,7 +113,7 @@ def run_all_cea(cea_ispObj, Pc=100.0, MR=1.0, eps=40.0):
     
     return ispODE, ispFroz, cstrODE, tcODE
 
-if __name__=="__main__":
+def dev_tests():
     
     from rocketcea.cea_obj import CEA_Obj
     
@@ -135,3 +135,7 @@ if __name__=="__main__":
     ispODE, ispFroz, cstrODE, tcODE = run_all_cea(cea_ispObj, Pc=100.0, MR=6.0, eps=40.0)
     print('Run All:', ispODE, ispFroz, cstrODE, tcODE)
     
+
+if __name__ == "__main__":
+    dev_tests()
+

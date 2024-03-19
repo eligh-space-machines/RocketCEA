@@ -1,3 +1,4 @@
+
 from math import log, exp, log10
 from rocketcea.Goal import Goal
 
@@ -314,7 +315,7 @@ class ConstMassFracStage:
 
 
 
-if __name__=="__main__":
+def dev_tests():
     
     if 1:
         #cmf = ConstMassFracStage()
@@ -343,4 +344,8 @@ if __name__=="__main__":
     
     cmf.setGLOW( GLOW=glow)
     cmf.summ_print()
+
+if __name__ == "__main__":
+    dev_tests()
+
     

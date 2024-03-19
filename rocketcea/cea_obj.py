@@ -60,8 +60,9 @@ def set_rocketcea_data_dir( rddir, do_print=True ):
         print( 'Setting ROCKETCEA_DATA_DIR =', ROCKETCEA_DATA_DIR )
     # try to solve spaces in Windows Path names by making 8.3, short path names.
     if ROCKETCEA_DATA_DIR.find(' ') >= 0:
-        print('WARNING: ROCKETCEA_DATA_DIR contains space characters:')
-        print('   ',ROCKETCEA_DATA_DIR)
+        if do_print:
+            print('WARNING: ROCKETCEA_DATA_DIR contains space characters:')
+            print('   ',ROCKETCEA_DATA_DIR)
         ROCKETCEA_DATA_DIR = get_usable_path( ROCKETCEA_DATA_DIR )
         
 set_rocketcea_data_dir( ROCKETCEA_DATA_DIR, do_print=False )
@@ -1604,7 +1605,7 @@ def print_py_cea_vars():
             print()
 
 
-if __name__ == '__main__':
+def dev_tests():
 
     # from pylab import *
 
@@ -1671,3 +1672,7 @@ if __name__ == '__main__':
     print( C.get_Throat_Transport( Pc=100.0, MR=1.0, eps=40.0, frozen=1) )
     print( C.get_Exit_Transport( Pc=100.0, MR=1.0, eps=40.0, frozen=0) )
     print( C.get_Exit_Transport( Pc=100.0, MR=1.0, eps=40.0, frozen=1) )
+
+if __name__ == "__main__":
+    dev_tests()
+

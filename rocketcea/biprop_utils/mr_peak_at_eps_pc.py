@@ -228,8 +228,8 @@ class MR_Peak_At_EpsPc( object ):
         ispL = [self.isp_at_mr( mr=mr) for mr in mrL]
         return mrL, ispL
     
-if __name__=="__main__":
-    from pylab import *
+def dev_tests():
+    from matplotlib.pyplot import title, plot, axvline, show
     
     mc = MR_Temperature_Limits(oxName='F2', fuelName='H2', oxPcentL=None, fuelPcentL=None,
         TC_LIMIT=1400.0, PcNominal=200.0, epsNominal=3.0,
@@ -275,4 +275,8 @@ if __name__=="__main__":
     
     show()
     
+
+if __name__ == "__main__":
+    dev_tests()
+
     
